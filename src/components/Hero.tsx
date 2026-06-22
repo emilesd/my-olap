@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import CubeLogo from "./CubeLogo";
+import HeroSlideshow from "./HeroSlideshow";
 import DataFlowAnimation from "./DataFlowAnimation";
 
 export default function Hero() {
@@ -22,7 +22,7 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="max-w-2xl">
             <motion.div
@@ -113,44 +113,19 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - dashboard + data flow */}
+          {/* Right - slideshow + data flow */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="relative hidden lg:block"
           >
-            {/* Dashboard image */}
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-2xl" />
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <Image
-                  src="/images/image (5).png"
-                  alt="MyOlap analytics dashboard showing real-time data visualization"
-                  width={700}
-                  height={450}
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Data flow diagram below the dashboard */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-6"
-            >
-              <DataFlowAnimation />
-            </motion.div>
-
             {/* Floating card - top right */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
-              className="absolute -top-4 -right-4 glass-card rounded-xl p-4 shadow-xl"
+              className="absolute -top-4 -right-4 z-10 glass-card rounded-xl p-4 shadow-xl"
             >
               <div className="flex items-center gap-3">
                 <CubeLogo size={36} />
@@ -161,6 +136,24 @@ export default function Hero() {
                   </p>
                 </div>
               </div>
+            </motion.div>
+
+            {/* Slideshow */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-2xl" />
+              <div className="relative">
+                <HeroSlideshow />
+              </div>
+            </div>
+
+            {/* Data flow animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mt-4"
+            >
+              <DataFlowAnimation />
             </motion.div>
           </motion.div>
         </div>
