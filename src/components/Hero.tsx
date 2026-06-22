@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import CubeLogo from "./CubeLogo";
+import DataFlowAnimation from "./DataFlowAnimation";
 
 export default function Hero() {
   return (
@@ -112,13 +113,14 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - dashboard image */}
+          {/* Right - dashboard + data flow */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="relative hidden lg:block"
           >
+            {/* Dashboard image */}
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-2xl" />
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10">
@@ -133,36 +135,14 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating card - bottom left */}
+            {/* Data flow diagram below the dashboard */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="absolute -bottom-6 -left-6 glass-card rounded-xl p-4 shadow-xl"
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mt-6"
             >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
-                  <svg
-                    className="h-5 w-5 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-500">Speed-of-Thought</p>
-                  <p className="text-sm font-semibold text-slate-900">
-                    Real-time Analytics
-                  </p>
-                </div>
-              </div>
+              <DataFlowAnimation />
             </motion.div>
 
             {/* Floating card - top right */}

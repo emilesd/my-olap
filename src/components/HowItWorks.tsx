@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Database, Layers, LineChart, FileSpreadsheet } from "lucide-react";
+import { motion } from "framer-motion";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
 
 const steps = [
@@ -35,6 +36,20 @@ const steps = [
   },
 ];
 
+function ProgressLine() {
+  return (
+    <motion.div
+      className="absolute left-6 top-14 bottom-2 w-px origin-top"
+      initial={{ scaleY: 0 }}
+      whileInView={{ scaleY: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
+    >
+      <div className="h-full w-full bg-gradient-to-b from-accent via-accent/40 to-transparent" />
+    </motion.div>
+  );
+}
+
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 lg:py-32 bg-slate-50">
@@ -56,32 +71,36 @@ export default function HowItWorks() {
               </p>
             </ScrollReveal>
 
-            <StaggerContainer className="mt-10 space-y-8" staggerDelay={0.12}>
-              {steps.map((step) => (
-                <StaggerItem key={step.number}>
-                  <div className="flex gap-5 group">
-                    <div className="flex-shrink-0">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:shadow-md group-hover:border-transparent">
-                        <step.icon size={22} />
+            <div className="relative mt-10">
+              <ProgressLine />
+
+              <StaggerContainer className="space-y-8" staggerDelay={0.15}>
+                {steps.map((step) => (
+                  <StaggerItem key={step.number}>
+                    <div className="flex gap-5 group relative">
+                      <div className="flex-shrink-0 relative z-10">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:shadow-md group-hover:border-transparent">
+                          <step.icon size={22} />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="text-xs font-bold text-accent tracking-wider">
+                            STEP {step.number}
+                          </span>
+                        </div>
+                        <h3 className="text-base font-semibold text-primary-dark">
+                          {step.title}
+                        </h3>
+                        <p className="mt-1 text-sm text-muted leading-relaxed">
+                          {step.description}
+                        </p>
                       </div>
                     </div>
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <span className="text-xs font-bold text-accent tracking-wider">
-                          STEP {step.number}
-                        </span>
-                      </div>
-                      <h3 className="text-base font-semibold text-primary-dark">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
           </div>
 
           <ScrollReveal direction="right">

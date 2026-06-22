@@ -1,7 +1,7 @@
 "use client";
 
+import { StaggerContainer, StaggerItem } from "./ScrollReveal";
 import ScrollReveal from "./ScrollReveal";
-import CountUp from "./CountUp";
 
 const stats = [
   { value: "10x", label: "Faster than traditional OLAP setup" },
@@ -19,18 +19,19 @@ export default function TrustBar() {
             Trusted by finance teams for strategic decision-making
           </p>
         </ScrollReveal>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8" staggerDelay={0.12}>
           {stats.map((stat, i) => (
-            <ScrollReveal key={i} delay={i * 0.1} direction="up">
-              <div className="text-center">
+            <StaggerItem key={i}>
+              <div className="text-center group">
                 <div className="text-3xl lg:text-4xl font-bold text-primary-dark">
-                  <CountUp value={stat.value} />
+                  {stat.value}
                 </div>
-                <p className="mt-2 text-sm text-muted">{stat.label}</p>
+                <div className="mx-auto mt-3 h-0.5 w-8 bg-accent/30 transition-all duration-500 group-hover:w-16 group-hover:bg-accent" />
+                <p className="mt-3 text-sm text-muted">{stat.label}</p>
               </div>
-            </ScrollReveal>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
