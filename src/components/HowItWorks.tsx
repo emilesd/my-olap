@@ -1,0 +1,113 @@
+"use client";
+
+import Image from "next/image";
+import { Database, Layers, LineChart, FileSpreadsheet } from "lucide-react";
+import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
+
+const steps = [
+  {
+    icon: Database,
+    number: "01",
+    title: "Connect Your Data Sources",
+    description:
+      "Stream data from your ERP, Essbase, Oracle EPM, CSV, XLS, or any source system directly into MyOlap models.",
+  },
+  {
+    icon: Layers,
+    number: "02",
+    title: "Build Your Dimensions",
+    description:
+      "Load from XLS or CSV files with dimension info. Add custom dimensions for strategic modeling, what-if scenarios, and M&A modeling.",
+  },
+  {
+    icon: LineChart,
+    number: "03",
+    title: "Analyze & Report",
+    description:
+      "Slice, dice, drill down, and explore with speed-of-thought analytics. Trading P&L, roll-ups, and fully aggregated views — all in Excel.",
+  },
+  {
+    icon: FileSpreadsheet,
+    number: "04",
+    title: "Share & Collaborate",
+    description:
+      "Share read-only models via OneDrive or SharePoint. Extend analysis with Power BI for enterprise-wide visibility and collaboration.",
+  },
+];
+
+export default function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-24 lg:py-32 bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <ScrollReveal>
+              <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-4">
+                How It Works
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-primary-dark tracking-tight">
+                From raw ERP data to{" "}
+                <span className="gradient-text">strategic insight.</span>
+              </h2>
+              <p className="mt-4 text-lg text-muted leading-relaxed">
+                MyOlap transforms complex data into actionable intelligence
+                through a streamlined, four-step process — all within your
+                familiar Excel environment.
+              </p>
+            </ScrollReveal>
+
+            <StaggerContainer className="mt-10 space-y-8" staggerDelay={0.12}>
+              {steps.map((step) => (
+                <StaggerItem key={step.number}>
+                  <div className="flex gap-5 group">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 text-accent transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:shadow-md group-hover:border-transparent">
+                        <step.icon size={22} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="text-xs font-bold text-accent tracking-wider">
+                          STEP {step.number}
+                        </span>
+                      </div>
+                      <h3 className="text-base font-semibold text-primary-dark">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-muted leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+
+          <ScrollReveal direction="right">
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/image (10).png"
+                  alt="Analytics dashboard showing charts and KPIs"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="absolute -bottom-8 -left-8 w-72 rounded-xl overflow-hidden shadow-xl border-4 border-white">
+                <Image
+                  src="/images/image (11).png"
+                  alt="Detailed analytics view with data visualization"
+                  width={300}
+                  height={200}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  );
+}
