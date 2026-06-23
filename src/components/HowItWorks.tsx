@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Database, Layers, LineChart, FileSpreadsheet } from "lucide-react";
 import { motion } from "framer-motion";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
+import DataFlowAnimation from "./DataFlowAnimation";
 
 const steps = [
   {
@@ -54,24 +55,30 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 lg:py-32 bg-slate-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Data flow visualization */}
+        <ScrollReveal className="mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-4">
+              How It Works
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary-dark tracking-tight">
+              From raw ERP data to{" "}
+              <span className="gradient-text">strategic insight.</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted leading-relaxed">
+              MyOlap transforms complex data into actionable intelligence — all
+              within your familiar Excel environment.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto rounded-2xl bg-primary-dark/95 p-8 shadow-lg">
+            <DataFlowAnimation />
+          </div>
+        </ScrollReveal>
+
+        {/* Steps + images */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <ScrollReveal>
-              <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-4">
-                How It Works
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-primary-dark tracking-tight">
-                From raw ERP data to{" "}
-                <span className="gradient-text">strategic insight.</span>
-              </h2>
-              <p className="mt-4 text-lg text-muted leading-relaxed">
-                MyOlap transforms complex data into actionable intelligence
-                through a streamlined, four-step process — all within your
-                familiar Excel environment.
-              </p>
-            </ScrollReveal>
-
-            <div className="relative mt-10">
+            <div className="relative">
               <ProgressLine />
 
               <StaggerContainer className="space-y-8" staggerDelay={0.15}>
